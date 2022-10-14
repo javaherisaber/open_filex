@@ -106,7 +106,7 @@ public class OpenFilePlugin implements MethodCallHandler
                         return;
                     }
                 }
-                if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                if (Build.VERSION.SDK_INT >= 33 || hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     if (TYPE_STRING_APK.equals(typeString)) {
                         openApkFile();
                         return;
