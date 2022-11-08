@@ -1,8 +1,3 @@
-## 4.2.0
-* Upgrade example project with latest version of flutter (3.3.5) and Android (33) (Commit#9d2027d)[https://github.com/javaherisaber/open_filex/commit/9d2027d4063194c822bb81c7a74ff20aadb0f2ee]
-* Upgrade support for Granular media permissions in Android 33 (Commit#261f446)[https://github.com/javaherisaber/open_filex/commit/261f4463835eb293a059bc09030443d5093bcbd2]
-* Remove usages of `REQUEST_INSTALL_PACKAGES` in Android plugin (PR#1)[https://github.com/javaherisaber/open_filex/pull/1]
-
 ## 4.1.1
 * Add filePaths instruction for Android in README.md
 * Fix parse args not filtering commands properly
