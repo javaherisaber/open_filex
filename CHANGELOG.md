@@ -1,8 +1,3 @@
-## 4.1.1
-* Add filePaths instruction for Android in README.md
-* Fix parse args not filtering commands properly
-* Fix viewController is not recognized in iOS
-
 ## 4.1.0
 * Fixed Plugin lifecycle onDetachedFromActivity in Android
 * Add getExternalFilesDir when checking if a path requires a permission
