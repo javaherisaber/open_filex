@@ -1,6 +1,3 @@
-## 4.3.1
-* Update README.md
-
 ## 4.3.0
 * Replace JCenter with MavenCentral in Android build.gradle repositories (Thanks to [@BetterB0y](https://github.com/BetterB0y))
 

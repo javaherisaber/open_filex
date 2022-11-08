@@ -3,18 +3,6 @@
 
 A plug-in that can call native APP to open files with string result in flutter, support iOS(DocumentInteraction) / android(intent) / PC(ffi) / web(dart:html)
 
-## Notice
-This package is a fork of [open_file](https://pub.dev/packages/open_file) to fix the following issues:
-- Remove `REQUEST_INSTALL_PACKAGES` permission in Android to comply with GooglePlay publish policies
-- Update [ffi](https://pub.dev/packages/ffi) to 2.0.1+
-- Upgrade support for [granular media permissions](https://developer.android.com/about/versions/13/behavior-changes-13#granular-media-permissions) in Android 13
-- Fix plugin lifecycle onDetachedFromActivity in Android
-- Fix viewController is not recognized in iOS
-- Fix parse args not filtering commands properly
-- Replace JCenter with MavenCentral in Android build.gradle repositories (since JCenter becomes unreachable sometimes due to it's end of life)
-
-For full list of changes see [CHANGELOG](https://pub.dev/packages/open_filex/changelog)
-
 ## Usage
 
 To use this plugin, add [open_filex](https://pub.dev/packages/open_filex/install) as a dependency in your pubspec.yaml file.
