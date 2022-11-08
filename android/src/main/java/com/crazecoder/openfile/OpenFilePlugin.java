@@ -463,11 +463,6 @@ public class OpenFilePlugin implements MethodCallHandler
 
     @Override
     public void onDetachedFromActivity() {
-        if (channel == null) {
-            return;
-        }
-        channel.setMethodCallHandler(null);
-        channel = null;
-        activity = null;
+
     }
 }
