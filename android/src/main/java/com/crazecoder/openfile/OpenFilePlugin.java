@@ -353,7 +353,19 @@ public class OpenFilePlugin implements MethodCallHandler
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void openApkFile() {
-        startActivity();
+            startActivity();
+    }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void startInstallPermissionSettingActivity() {
+        if (activity == null) {
+            return;
+        }
+        Uri packageURI = Uri.parse("package:" + activity.getPackageName());
+        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
+        activity.startActivityForResult(intent, RESULT_CODE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -379,7 +391,7 @@ public class OpenFilePlugin implements MethodCallHandler
     @Override
     public boolean onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == RESULT_CODE) {
-            startActivity();
+                startActivity();
         }
         return false;
     }
