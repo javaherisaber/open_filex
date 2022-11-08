@@ -1,6 +1,8 @@
 # open_filex
 [![pub package](https://img.shields.io/pub/v/open_filex.svg)](https://pub.dev/packages/open_filex)
 
+**NOTICE**: This package is forked from [here](https://github.com/crazecoder/open_file) to remove a dangerous permission in android 
+
 A plug-in that can call native APP to open files with string result in flutter, support iOS(DocumentInteraction) / android(intent) / PC(ffi) / web(dart:html)
 
 ## Usage
@@ -16,6 +18,7 @@ dependencies:
 import 'package:open_filex/open_filex.dart';
 
 OpenFilex.open("/sdcard/example.txt");
+//OpenFilex.open("/sdcard/example.txt", type: "text/plain", uti: "public.plain-text");
 ```
 
 ## Support

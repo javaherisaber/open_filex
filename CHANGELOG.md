@@ -1,6 +1,3 @@
-## 4.0.1
-* Update readme descriptions
-
 ## 4.0.0
 * Update ffi to 2.0.1
 * Require Flutter 3.0.0+ and Dart 2.17.0+ (because of ffi 2.0.0+)
