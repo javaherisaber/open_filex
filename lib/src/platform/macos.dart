@@ -7,7 +7,6 @@ typedef SystemC = ffi.Int32 Function(ffi.Pointer<Utf8> command);
 
 typedef SystemDart = int Function(ffi.Pointer<Utf8> command);
 
-/// run the [command]s on system
 int system(List<String> args) {
   // Load `stdlib`. On MacOS this is in libSystem.dylib.
   final dylib = ffi.DynamicLibrary.open('/usr/lib/libSystem.dylib');

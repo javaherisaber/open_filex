@@ -1,5 +1,5 @@
 # open_filex
-[![pub package](https://img.shields.io/pub/v/open_filex.svg)](https://pub.dev/packages/open_filex)
+[![pub package](https://img.shields.io/pub/v/open_filex.svg)](https://pub.dartlang.org/packages/open_filex)
 
 **NOTICE**: This package is forked from [here](https://github.com/crazecoder/open_file) to remove a dangerous permission in android 
 
@@ -7,7 +7,7 @@ A plug-in that can call native APP to open files with string result in flutter, 
 
 ## Usage
 
-To use this plugin, add [open_filex](https://pub.dev/packages/open_filex/install) as a dependency in your pubspec.yaml file.
+To use this plugin, add [open_filex](https://pub.dartlang.org/packages/open_filex#-installing-tab-) as a dependency in your pubspec.yaml file.
 ```yaml
 dependencies:
   open_filex: ^lastVersion

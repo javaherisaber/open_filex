@@ -1,8 +1,3 @@
-## 4.0.0
-* Update ffi to 2.0.1
-* Require Flutter 3.0.0+ and Dart 2.17.0+ (because of ffi 2.0.0+)
-* Update example project with latest version of Flutter (3.0.5)
-
 ## 3.4.0
 * Fix podspec in ios not resolved
 ## 3.3.0

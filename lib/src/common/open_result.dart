@@ -1,4 +1,3 @@
-/// Result of opening the file in target platform
 class OpenResult {
   ResultType type;
   String message;
@@ -24,7 +23,6 @@ class OpenResult {
   }
 }
 
-/// Result status and reason of error if platform returns an error
 enum ResultType {
   done,
   fileNotFound,

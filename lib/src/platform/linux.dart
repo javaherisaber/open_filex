@@ -7,7 +7,6 @@ typedef SystemC = ffi.Int32 Function(ffi.Pointer<Utf8> command);
 
 typedef SystemDart = int Function(ffi.Pointer<Utf8> command);
 
-/// run the [command]s on system
 int system(List<String> command) {
   // Load `stdlib`. On Linux this is in libc.so.6.
   final dylib = ffi.DynamicLibrary.open('libc.so.6');

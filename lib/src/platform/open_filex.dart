@@ -8,9 +8,8 @@ import 'macos.dart' as mac;
 import 'windows.dart' as windows;
 import 'linux.dart' as linux;
 
-/// OpenFilex class
 class OpenFilex {
-  static const MethodChannel _channel = MethodChannel('open_file');
+  static const MethodChannel _channel = const MethodChannel('open_file');
 
   OpenFilex._();
 
@@ -22,32 +21,32 @@ class OpenFilex {
       bool linuxByProcess = false}) async {
     assert(filePath != null);
     if (!Platform.isIOS && !Platform.isAndroid) {
-      int result;
-      int windowsResult = 0;
+      int _result;
+      var _windowsResult;
       if (Platform.isMacOS) {
-        result = mac.system(['open', '$filePath']);
+        _result = mac.system(['open', '$filePath']);
       } else if (Platform.isLinux) {
         var filePathLinux = Uri.file(filePath!);
         if (linuxByProcess) {
-          result =
-              Process.runSync('xdg-open', [filePathLinux.toString()]).exitCode;
+          _result = Process.runSync('xdg-open', [filePathLinux.toString()])
+              .exitCode;
         } else {
-          result = linux
-              .system(['$linuxDesktopName-open', filePathLinux.toString()]);
+          _result = linux.system(
+              ['$linuxDesktopName-open', filePathLinux.toString()]);
         }
       } else if (Platform.isWindows) {
-        windowsResult = windows.shellExecute('open', filePath!);
-        result = windowsResult <= 32 ? 1 : 0;
+        _windowsResult = windows.shellExecute('open', filePath!);
+        _result = _windowsResult <= 32 ? 1 : 0;
       } else {
-        result = -1;
+        _result = -1;
       }
       return OpenResult(
-          type: result == 0 ? ResultType.done : ResultType.error,
-          message: result == 0
+          type: _result == 0 ? ResultType.done : ResultType.error,
+          message: _result == 0
               ? "done"
-              : result == -1
+              : _result == -1
                   ? "This operating system is not currently supported"
-                  : "there are some errors when open $filePath${Platform.isWindows ? "   HINSTANCE=$windowsResult" : ""}");
+                  : "there are some errors when open $filePath${Platform.isWindows ? "   HINSTANCE=$_windowsResult" : ""}");
     }
 
     Map<String, String?> map = {
@@ -55,8 +54,8 @@ class OpenFilex {
       "type": type,
       "uti": uti,
     };
-    final result = await _channel.invokeMethod('open_file', map);
-    final resultMap = json.decode(result) as Map<String, dynamic>;
+    final _result = await _channel.invokeMethod('open_file', map);
+    final resultMap = json.decode(_result) as Map<String, dynamic>;
     return OpenResult.fromJson(resultMap);
   }
 }
