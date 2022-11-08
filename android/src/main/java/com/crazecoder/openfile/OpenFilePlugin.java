@@ -84,10 +84,6 @@ public class OpenFilePlugin implements MethodCallHandler
         return ContextCompat.checkSelfPermission(activity, permission) == PermissionChecker.PERMISSION_GRANTED;
     }
 
-    private void requestPermission(String permission) {
-        ActivityCompat.requestPermissions(activity, new String[]{permission}, REQUEST_CODE);
-    }
-
     @Override
     @SuppressLint("NewApi")
     public void onMethodCall(MethodCall call, @NonNull Result result) {
@@ -105,21 +101,19 @@ public class OpenFilePlugin implements MethodCallHandler
                     if(!isFileAvailable()){
                         return;
                     }
-                    if (!isMediaStorePath() && !Environment.isExternalStorageManager()) {
+                    if (!isMediaStorePath()&&!Environment.isExternalStorageManager()) {
                         result(-3, "Permission denied: android.Manifest.permission.MANAGE_EXTERNAL_STORAGE");
                         return;
                     }
                 }
-                if (canStartActivityWithPermission()) {
+                if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    if (TYPE_STRING_APK.equals(typeString)) {
+                        openApkFile();
+                        return;
+                    }
                     startActivity();
-                } else if (Build.VERSION.SDK_INT < 33) {
-                    requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
-                } else if (typeString.startsWith("image")) {
-                    requestPermission(Manifest.permission.READ_MEDIA_IMAGES);
-                } else if (typeString.startsWith("video")) {
-                    requestPermission(Manifest.permission.READ_MEDIA_VIDEO);
-                } else if (typeString.startsWith("audio")) {
-                    requestPermission(Manifest.permission.READ_MEDIA_AUDIO);
+                } else {
+                    ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
                 }
             } else {
                 startActivity();
@@ -128,14 +122,6 @@ public class OpenFilePlugin implements MethodCallHandler
             result.notImplemented();
             isResultSubmitted = true;
         }
-    }
-
-    private boolean canStartActivityWithPermission() {
-        return (Build.VERSION.SDK_INT < 33 && hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) ||
-                (Build.VERSION.SDK_INT >= 33 && typeString.startsWith("image") && hasPermission(Manifest.permission.READ_MEDIA_IMAGES)) ||
-                (Build.VERSION.SDK_INT >= 33 && typeString.startsWith("video") && hasPermission(Manifest.permission.READ_MEDIA_VIDEO)) ||
-                (Build.VERSION.SDK_INT >= 33 && typeString.startsWith("audio") && hasPermission(Manifest.permission.READ_MEDIA_AUDIO)) ||
-                (Build.VERSION.SDK_INT >= 33 && !(typeString.startsWith("image") || typeString.startsWith("video") || typeString.startsWith("audio")));
     }
 
     private boolean isMediaStorePath(){
@@ -366,9 +352,19 @@ public class OpenFilePlugin implements MethodCallHandler
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
+    private void openApkFile() {
+        startActivity();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public boolean onRequestPermissionsResult(int requestCode, String[] strings, int[] grantResults) {
         if (requestCode != REQUEST_CODE) return false;
+        if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                && TYPE_STRING_APK.equals(typeString)) {
+            openApkFile();
+            return false;
+        }
         for (String string : strings) {
             if (!hasPermission(string)) {
                 result(-3, "Permission denied: " + string);
