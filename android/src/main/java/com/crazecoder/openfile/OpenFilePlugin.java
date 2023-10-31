@@ -399,8 +399,12 @@ public class OpenFilePlugin implements MethodCallHandler
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
         this.flutterPluginBinding = binding;
-        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "open_file");
         context = flutterPluginBinding.getApplicationContext();
+        setup();
+    }
+
+    private void setup() {
+        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "open_file");
         channel.setMethodCallHandler(this);
     }
 
@@ -410,7 +414,6 @@ public class OpenFilePlugin implements MethodCallHandler
             // Could be on too low of an SDK to have started listening originally.
             return;
         }
-
         channel.setMethodCallHandler(null);
         channel = null;
         this.flutterPluginBinding = null;
@@ -418,6 +421,7 @@ public class OpenFilePlugin implements MethodCallHandler
 
     @Override
     public void onAttachedToActivity(ActivityPluginBinding binding) {
+        setup();
         activity = binding.getActivity();
         binding.addRequestPermissionsResultListener(this);
         binding.addActivityResultListener(this);
