@@ -51,7 +51,7 @@ OpenFilex.open("/sdcard/example.txt");
             {".cpp",    "text/plain"},
             {".doc",    "application/msword"},
             {".docx",   "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
-            {".xls",    "application/vnd.ms-excel"},
+            {".xls",    "text/csv"},
             {".xlsx",   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
             {".exe",    "application/octet-stream"},
             {".gif",    "image/gif"},
