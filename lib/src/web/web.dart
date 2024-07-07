@@ -1,12 +1,9 @@
 import 'dart:async';
 
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
+import 'package:web/web.dart';
 
 /// Open your file with [uri] on the web
 Future<bool> open(String uri) async {
-  return window
-      .resolveLocalFileSystemUrl(uri)
-      .then((_) => true)
-      .catchError((e) => false);
+  return false;
 }
