@@ -1,6 +1,6 @@
 name: open_filex
 description: A plug-in that can call native APP to open files with string result in flutter, support iOS(UTI) / android(intent) / PC(ffi) / web(dart:html)
-version: 4.4.0
+version: 4.4.1
 homepage: https://github.com/javaherisaber/open_file
 
 dependencies:
@@ -25,10 +25,10 @@ flutter:
       ios:
         pluginClass: OpenFilePlugin
       windows:
-        default_package: open_filex
+        default_package: dartPluginClass
       linux:
-        default_package: open_filex
+        default_package: dartPluginClass
       macos:
-        default_package: open_filex
+        default_package: dartPluginClass
       web:
         default_package: open_filex
