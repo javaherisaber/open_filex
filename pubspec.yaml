@@ -24,11 +24,3 @@ flutter:
         pluginClass: OpenFilePlugin
       ios:
         pluginClass: OpenFilePlugin
-      windows:
-        default_package: dartPluginClass
-      linux:
-        default_package: dartPluginClass
-      macos:
-        default_package: dartPluginClass
-      web:
-        default_package: open_filex
