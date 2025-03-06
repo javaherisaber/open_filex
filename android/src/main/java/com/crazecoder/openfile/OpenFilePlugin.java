@@ -69,23 +69,18 @@ public class OpenFilePlugin implements MethodCallHandler
     private static final int RESULT_CODE = 0x12;
     private static final String TYPE_STRING_APK = "application/vnd.android.package-archive";
 
-    @Deprecated
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        OpenFilePlugin plugin = new OpenFilePlugin();
-        plugin.activity = registrar.activity();
-        plugin.context = registrar.context();
-        plugin.channel = new MethodChannel(registrar.messenger(), "open_file");
-        plugin.channel.setMethodCallHandler(plugin);
-        registrar.addRequestPermissionsResultListener(plugin);
-        registrar.addActivityResultListener(plugin);
-    }
-
     private boolean hasPermission(String permission) {
         return ContextCompat.checkSelfPermission(activity, permission) == PermissionChecker.PERMISSION_GRANTED;
     }
 
     private void requestPermission(String permission) {
         ActivityCompat.requestPermissions(activity, new String[]{permission}, REQUEST_CODE);
+    }
+
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        channel = new MethodChannel(binding.getBinaryMessenger(), "open_file");
+        channel.setMethodCallHandler(this);
     }
 
     @Override
@@ -128,6 +123,12 @@ public class OpenFilePlugin implements MethodCallHandler
             result.notImplemented();
             isResultSubmitted = true;
         }
+    }
+
+    @Override
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        channel.setMethodCallHandler(null);
+        channel = null;
     }
 
     private boolean canStartActivityWithPermission() {
