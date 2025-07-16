@@ -1,3 +1,9 @@
+## 4.7.0
+* Fix Android compatibility issues after Flutter 3.29.0 upgrade (Thanks to [mufassalhussain](https://github.com/mufassalhussain), PR[#19](https://github.com/javaherisaber/open_filex/pull/19))
+
+## 4.6.0
+* Fix platform errors for linux, windows, web, macos on Flutter 3.27+ (Thanks to [Xavier H.](https://github.com/xvrh), PR[#17](https://github.com/javaherisaber/open_filex/pull/17))
+
 ## 4.5.0
 * Avoid using system to open on desktop platforms (Thanks to [@prateekmedia](https://github.com/prateekmedia), PR [#7](https://github.com/javaherisaber/open_filex/pull/7))
 * Use dartPluginClass as default_package for desktop platforms (Thanks to [@sjordan2010](https://github.com/sjordan2010), PR [#16](https://github.com/javaherisaber/open_filex/pull/16))

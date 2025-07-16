@@ -12,8 +12,7 @@ dependencies:
     sdk: flutter
   open_filex:
     path: ../
-  permission_handler: ^10.3.0
-  file_picker: ^5.3.2
+  permission_handler: ^11.4.0
 
 dev_dependencies:
   flutter_test:
