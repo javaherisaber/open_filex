@@ -1,3 +1,12 @@
+## 4.7.3
+* Fixed ios podspec
+
+## 4.7.2
+* Remove Android READ_MEDIA_IMAGES/READ_MEDIA_VIDEO permissions. The previous had bugs.
+
+## 4.7.1
+* Remove Android READ_MEDIA_IMAGES/READ_MEDIA_VIDEO permissions.
+
 ## 4.7.0
 * Fix Android compatibility issues after Flutter 3.29.0 upgrade (Thanks to [mufassalhussain](https://github.com/mufassalhussain), PR[#19](https://github.com/javaherisaber/open_filex/pull/19))
 

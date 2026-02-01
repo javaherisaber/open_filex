@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:open_filex/open_filex.dart';
+import 'package:open_filex/open_filex_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyAppState extends State<MyApp> {
     if (Platform.isLinux) {
       _openLinuxFile();
     } else if (Platform.isAndroid) {
-      _openAndroidExternalImage();
+      _openAndroidExternalFile();
     } else if (Platform.isWindows) {
       _openWindowsFile();
     } else if (Platform.isMacOS) {
@@ -82,12 +82,11 @@ class MyAppState extends State<MyApp> {
   // ignore: unused_element
   _openAndroidExternalImage() async {
     //open an external storage image file on android 13
-    if (await Permission.photos.request().isGranted) {
-      final result = await OpenFilex.open("/sdcard/Download/flutter.png");
+      final result = await OpenFilex.open("/sdcard/Download/k.apk");
       setState(() {
         _openResult = "type=${result.type}  message=${result.message}";
       });
-    }
+
   }
 
   // ignore: unused_element
@@ -115,12 +114,10 @@ class MyAppState extends State<MyApp> {
   // ignore: unused_element
   _openAndroidExternalFile() async {
     //open an external storage file
-    if (await Permission.manageExternalStorage.request().isGranted) {
-      final result = await OpenFilex.open("/sdcard/Android/data/R-C.xml");
+      final result = await OpenFilex.open("/sdcard/Download/k.apk");
       setState(() {
         _openResult = "type=${result.type}  message=${result.message}";
       });
-    }
   }
 
   @override
