@@ -100,10 +100,6 @@ public class OpenFilePlugin implements MethodCallHandler
 
     @Override
     public void onDetachedFromActivity() {
-        if (channel != null) {
-            channel.setMethodCallHandler(null);
-            channel = null;
-        }
         activity = null;
     }
 
