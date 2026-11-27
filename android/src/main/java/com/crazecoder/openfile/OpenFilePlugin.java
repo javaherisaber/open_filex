@@ -114,6 +114,10 @@ public class OpenFilePlugin implements MethodCallHandler
     @Override
     @SuppressLint("NewApi")
     public void onMethodCall(MethodCall call, @NonNull Result result) {
+        if (activity == null && call.method.equals("open_file")) {
+            result.success(JsonUtil.toJson(MapUtil.createMap(-4, "No Activity is attached to open the file")));
+            return;
+        }
         isResultSubmitted = false;
         if (call.method.equals("open_file")) {
             this.result = result;
